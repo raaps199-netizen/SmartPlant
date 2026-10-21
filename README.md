@@ -1,20 +1,34 @@
 # SmartPlant Dashboard
 
-A responsive Next.js dashboard foundation for the SmartPlant ESP8266 irrigation project.
+Responsive Next.js dashboard for the SmartPlant ESP8266 irrigation project.
 
-## Current status
+## Blynk integration
 
-- [x] Initial dashboard UI
-- [x] Sensor status placeholders
-- [x] Automatic/manual mode selector (UI only)
-- [x] Pump toggle simulation (UI only)
-- [x] Moisture threshold and watering-duration controls (UI only)
-- [ ] Supabase authentication and database
-- [ ] Authenticated device API
-- [ ] ESP8266 integration
-- [ ] Vercel deployment
+The dashboard uses the Blynk Cloud Device HTTPS API through a server-side Next.js route. The device token is read only by the server and should never be placed in client-side code or committed to GitHub.
 
-**Important:** The current controls are preview-only and do not send commands to physical hardware. The existing Blynk firmware is intentionally not replaced in this commit.
+Set this environment variable in Vercel:
+
+- `BLYNK_AUTH_TOKEN`: the device auth token from Blynk Device Info.
+
+After adding or changing the variable, redeploy the project.
+
+## Datastream mapping
+
+| Virtual pin | Name | Dashboard use |
+| --- | --- | --- |
+| V0 | Pump Control | Manual pump control |
+| V1 | Jadwal Aktif | Enable/disable scheduled watering |
+| V2 / V3 | Jam Siram 1 / Menit Siram 1 | Schedule 1 |
+| V4 / V5 | Jam Siram 2 / Menit Siram 2 | Schedule 2 |
+| V6 | Durasi Siram | Watering duration |
+| V7 | Detail Jadwal | Schedule detail display |
+| V8 | Integer V8 | Additional timer value display |
+| V9 | String V9 | Additional status display |
+| V10 | Integer V10 | Soil moisture percentage |
+| V11 | Soil Auto Toggle | Enable/disable soil-based automation |
+| V12 | Moisture Threshold | Soil moisture threshold |
+
+V8 and V9 currently retain their generic Blynk names. The CSV does not identify a second soil-moisture datastream, so the dashboard only displays the configured moisture value from V10.
 
 ## Run locally
 
@@ -27,10 +41,4 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Environment variables
-
-Copy `.env.example` to `.env.local` when Supabase integration is added. Never commit real keys, Wi-Fi credentials, or device tokens.
-
-## Next integration step
-
-Review the current working ESP8266/Blynk sketch and agree on the data/command contract before migrating hardware control. Keep the Blynk version as a backup until the custom dashboard has been tested end-to-end.
+For local development, place `BLYNK_AUTH_TOKEN=...` in `.env.local`. Never commit real device tokens or Wi-Fi credentials.
