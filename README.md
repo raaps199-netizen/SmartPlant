@@ -1,1 +1,2 @@
 # SmartPlant
+# SmartPlant Dashboard
