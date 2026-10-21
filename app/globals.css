@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background: #07110e;
+  color: #ecf7f0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+::selection { background: #3bd18a; color: #06110b; }
