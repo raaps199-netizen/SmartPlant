@@ -82,7 +82,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const query = new URLSearchParams({ token, [pin]: String(value) });
+    const query = new URLSearchParams({ token, [pin.toLowerCase()]: String(value) });
     const response = await fetch(`${BLYNK_API}/update?${query.toString()}`, {
       method: "GET",
       cache: "no-store",
