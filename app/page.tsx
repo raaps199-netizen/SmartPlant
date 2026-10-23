@@ -127,7 +127,7 @@ export default function Home() {
               <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Kondisi kebun</h1>
             </div>
           </div>
-          <div className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${data?.connected ? "border-emerald-200 bg-emerald-800/10 text-emerald-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
+          <div className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${data?.connected ? "border-emerald-200 bg-stone-800/10 text-emerald-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
             {data?.connected ? <Wifi size={16} /> : <WifiOff size={16} />}
             {data?.connected ? "NodeMCU Online" : "NodeMCU Offline"}
             <button onClick={() => void refresh()} aria-label="Refresh data" className="ml-1 rounded-full p-1 hover:bg-stone-200"><RefreshCw size={14} /></button>
@@ -166,7 +166,7 @@ export default function Home() {
         <section className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           <article className="rounded-2xl border border-stone-200 bg-white p-6 sm:p-8">
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-800/10 text-emerald-800"><Power size={22} /></div>
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-stone-800/10 text-emerald-800"><Power size={22} /></div>
               <div><h2 className="text-xl font-bold">Kontrol penyiraman</h2><p className="mt-1 text-sm text-stone-500">Kontrol pompa dan mode otomatis.</p></div>
             </div>
 
@@ -214,7 +214,7 @@ export default function Home() {
               <div className="mt-1 flex justify-between text-xs text-stone-500"><span>1 detik</span><span>120 detik</span></div>
             </label>
 
-            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-emerald-800 px-4 py-3 font-bold text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
+            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-stone-800 px-4 py-3 font-bold text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
 
             {message && <p aria-live="polite" className="mt-4 rounded-xl bg-stone-100 px-3 py-2 text-sm text-stone-700">{message}</p>}
             <p className="mt-5 text-xs text-stone-500">Kelembapan terakhir: {hasMoisture ? `${moisture}%` : "belum ada data"}.</p>
