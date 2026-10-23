@@ -117,111 +117,111 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-6 sm:px-8 sm:py-10">
+    <main className="min-h-screen bg-[#f5f4ed] px-4 py-6 text-stone-900 sm:px-8 sm:py-10">
       <div className="mx-auto max-w-6xl">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-400 text-emerald-950"><Sprout size={27} /></div>
+            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-800 text-white"><Sprout size={27} /></div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-300">SmartPlant IoT</p>
-              <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Plant Control Center</h1>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-800">SmartPlant IoT</p>
+              <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Kondisi kebun</h1>
             </div>
           </div>
-          <div className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${data?.connected ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-200" : "border-amber-300/20 bg-amber-300/10 text-amber-200"}`}>
+          <div className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${data?.connected ? "border-emerald-200 bg-emerald-800/10 text-emerald-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
             {data?.connected ? <Wifi size={16} /> : <WifiOff size={16} />}
             {data?.connected ? "NodeMCU Online" : "NodeMCU Offline"}
-            <button onClick={() => void refresh()} aria-label="Refresh data" className="ml-1 rounded-full p-1 hover:bg-white/10"><RefreshCw size={14} /></button>
+            <button onClick={() => void refresh()} aria-label="Refresh data" className="ml-1 rounded-full p-1 hover:bg-stone-200"><RefreshCw size={14} /></button>
           </div>
         </header>
 
         {loadError && (
-          <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm text-amber-100">
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             {loadError}
-            {!data && loadError.includes("BLYNK_AUTH_TOKEN") && <span className="mt-1 block text-amber-100/80">Tambahkan BLYNK_AUTH_TOKEN di Vercel → Project Settings → Environment Variables, lalu redeploy.</span>}
+            {!data && loadError.includes("BLYNK_AUTH_TOKEN") && <span className="mt-1 block text-amber-900/80">Tambahkan BLYNK_AUTH_TOKEN di Vercel → Project Settings → Environment Variables, lalu redeploy.</span>}
           </div>
         )}
 
         <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-            <div className="flex items-center justify-between"><span className="text-sm text-slate-400">Kelembapan tanah · V10</span><Droplets className="text-sky-300" /></div>
-            <div className="mt-5 flex items-end gap-2"><strong className="text-5xl">{hasMoisture ? moisture : "--"}</strong><span className="pb-1 text-slate-400">%</span></div>
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-sky-300 transition-all" style={{ width: `${Math.max(0, Math.min(100, moisture))}%` }} /></div>
+          <article className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center justify-between"><span className="text-sm text-stone-500">Kelembapan tanah · V10</span><Droplets className="text-sky-700" /></div>
+            <div className="mt-5 flex items-end gap-2"><strong className="text-5xl">{hasMoisture ? moisture : "--"}</strong><span className="pb-1 text-stone-500">%</span></div>
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-stone-200"><div className="h-full rounded-full bg-sky-700 transition-all" style={{ width: `${Math.max(0, Math.min(100, moisture))}%` }} /></div>
           </article>
 
-          <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-            <div className="flex items-center justify-between"><span className="text-sm text-slate-400">Pompa air · V0</span><Power className={pumpOn ? "text-emerald-300" : "text-slate-500"} /></div>
+          <article className="rounded-2xl border border-stone-200 bg-white p-6">
+            <div className="flex items-center justify-between"><span className="text-sm text-stone-500">Pompa air · V0</span><Power className={pumpOn ? "text-emerald-800" : "text-stone-500"} /></div>
             <div className="mt-5 text-3xl font-bold">{pumpOn ? "MENYALA" : "MATI"}</div>
-            <p className="mt-2 text-sm text-slate-400">Status pompa dari Blynk</p>
+            <p className="mt-2 text-sm text-stone-500">Status pompa dari Blynk</p>
           </article>
 
-          <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center justify-between"><span className="text-sm text-slate-400">Jadwal penyiraman · V1</span><Activity className="text-violet-300" /></div>
+          <article className="rounded-2xl border border-stone-200 bg-white p-6 sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between"><span className="text-sm text-stone-500">Jadwal penyiraman · V1</span><Activity className="text-violet-700" /></div>
             <div className="mt-5 text-3xl font-bold">{scheduleActive ? "AKTIF" : "NONAKTIF"}</div>
-            <p className="mt-2 text-sm text-slate-400">{scheduleDetail || "Status jadwal"}</p>
-            {timerValue !== undefined && timerValue !== null && timerValue !== "" && <p className="mt-2 text-xs text-slate-500">V8 · {String(timerValue)} detik</p>}
-            {extraStatus && <p className="mt-2 text-xs text-slate-500">{extraStatus}</p>}
+            <p className="mt-2 text-sm text-stone-500">{scheduleDetail || "Status jadwal"}</p>
+            {timerValue !== undefined && timerValue !== null && timerValue !== "" && <p className="mt-2 text-xs text-stone-500">V8 · {String(timerValue)} detik</p>}
+            {extraStatus && <p className="mt-2 text-xs text-stone-500">{extraStatus}</p>}
           </article>
         </section>
 
-        <section className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
+        <section className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <article className="rounded-2xl border border-stone-200 bg-white p-6 sm:p-8">
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-400/10 text-emerald-300"><Power size={22} /></div>
-              <div><h2 className="text-xl font-bold">Kontrol penyiraman</h2><p className="mt-1 text-sm text-slate-400">Kontrol pompa dan mode otomatis.</p></div>
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-800/10 text-emerald-800"><Power size={22} /></div>
+              <div><h2 className="text-xl font-bold">Kontrol penyiraman</h2><p className="mt-1 text-sm text-stone-500">Kontrol pompa dan mode otomatis.</p></div>
             </div>
 
-            <div className="mt-7 flex items-center justify-between gap-4 rounded-2xl border border-white/10 p-4">
-              <div><p className="font-semibold">Pompa air</p><p className="mt-1 text-sm text-slate-400">{pumpOn ? "Pompa sedang menyala" : "Pompa sedang mati"}</p></div>
-              <button onClick={() => void sendChanges([{ pin: "V0", value: pumpOn ? 0 : 1 }], "Pompa")} disabled={!data?.connected || busyPin !== null} className={`rounded-xl px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-40 ${pumpOn ? "bg-rose-400 text-rose-950" : "bg-emerald-300 text-emerald-950"}`}>{busyPin === "Pompa" ? "Menyimpan..." : pumpOn ? "Matikan" : "Nyalakan"}</button>
+            <div className="mt-7 flex items-center justify-between gap-4 rounded-2xl border border-stone-200 p-4">
+              <div><p className="font-semibold">Pompa air</p><p className="mt-1 text-sm text-stone-500">{pumpOn ? "Pompa sedang menyala" : "Pompa sedang mati"}</p></div>
+              <button onClick={() => void sendChanges([{ pin: "V0", value: pumpOn ? 0 : 1 }], "Pompa")} disabled={!data?.connected || busyPin !== null} className={`rounded-xl px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-40 ${pumpOn ? "bg-rose-700 text-white" : "bg-emerald-800 text-white"}`}>{busyPin === "Pompa" ? "Menyimpan..." : pumpOn ? "Matikan" : "Nyalakan"}</button>
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 p-4">
-                <div><p className="font-semibold">Jadwal aktif</p><p className="mt-1 text-xs text-slate-400">Datastream V1</p></div>
-                <button onClick={() => void sendChanges([{ pin: "V1", value: scheduleActive ? 0 : 1 }], "Jadwal")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${scheduleActive ? "bg-emerald-300 text-emerald-950" : "bg-white/10 text-slate-200"}`}>{scheduleActive ? "Aktif" : "Nonaktif"}</button>
+              <div className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200 p-4">
+                <div><p className="font-semibold">Jadwal aktif</p><p className="mt-1 text-xs text-stone-500">Datastream V1</p></div>
+                <button onClick={() => void sendChanges([{ pin: "V1", value: scheduleActive ? 0 : 1 }], "Jadwal")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${scheduleActive ? "bg-emerald-800 text-white" : "bg-stone-200 text-slate-200"}`}>{scheduleActive ? "Aktif" : "Nonaktif"}</button>
               </div>
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 p-4">
-                <div><p className="font-semibold">Otomatis sensor</p><p className="mt-1 text-xs text-slate-400">Datastream V11</p></div>
-                <button onClick={() => void sendChanges([{ pin: "V11", value: soilAuto ? 0 : 1 }], "Mode otomatis")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${soilAuto ? "bg-emerald-300 text-emerald-950" : "bg-white/10 text-slate-200"}`}>{soilAuto ? "Aktif" : "Nonaktif"}</button>
+              <div className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200 p-4">
+                <div><p className="font-semibold">Otomatis sensor</p><p className="mt-1 text-xs text-stone-500">Datastream V11</p></div>
+                <button onClick={() => void sendChanges([{ pin: "V11", value: soilAuto ? 0 : 1 }], "Mode otomatis")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${soilAuto ? "bg-emerald-800 text-white" : "bg-stone-200 text-slate-200"}`}>{soilAuto ? "Aktif" : "Nonaktif"}</button>
               </div>
             </div>
 
-            <div className="mt-7 border-t border-white/10 pt-6">
+            <div className="mt-7 border-t border-stone-200 pt-6">
               <h3 className="font-semibold">Jadwal penyiraman</h3>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <label className="block"><span className="text-sm text-slate-300">Jadwal 1 · V2/V3</span><input className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-3 py-3 text-lg" type="time" value={schedule1} onChange={e => setSchedule1(e.target.value)} /></label>
-                <label className="block"><span className="text-sm text-slate-300">Jadwal 2 · V4/V5</span><input className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-3 py-3 text-lg" type="time" value={schedule2} onChange={e => setSchedule2(e.target.value)} /></label>
+                <label className="block"><span className="text-sm text-stone-700">Jadwal 1 · V2/V3</span><input className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 text-lg" type="time" value={schedule1} onChange={e => setSchedule1(e.target.value)} /></label>
+                <label className="block"><span className="text-sm text-stone-700">Jadwal 2 · V4/V5</span><input className="mt-2 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 text-lg" type="time" value={schedule2} onChange={e => setSchedule2(e.target.value)} /></label>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <button onClick={() => void saveSchedule(1)} disabled={!data || busyPin !== null} className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold hover:bg-white/5 disabled:opacity-40">{busyPin === "Jadwal 1" ? "Menyimpan..." : "Simpan jadwal 1"}</button>
-                <button onClick={() => void saveSchedule(2)} disabled={!data || busyPin !== null} className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold hover:bg-white/5 disabled:opacity-40">{busyPin === "Jadwal 2" ? "Menyimpan..." : "Simpan jadwal 2"}</button>
+                <button onClick={() => void saveSchedule(1)} disabled={!data || busyPin !== null} className="rounded-xl border border-stone-200 px-4 py-2.5 text-sm font-semibold hover:bg-stone-100 disabled:opacity-40">{busyPin === "Jadwal 1" ? "Menyimpan..." : "Simpan jadwal 1"}</button>
+                <button onClick={() => void saveSchedule(2)} disabled={!data || busyPin !== null} className="rounded-xl border border-stone-200 px-4 py-2.5 text-sm font-semibold hover:bg-stone-100 disabled:opacity-40">{busyPin === "Jadwal 2" ? "Menyimpan..." : "Simpan jadwal 2"}</button>
               </div>
             </div>
           </article>
 
-          <article className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
-            <div className="flex items-center gap-3"><div className="grid h-11 w-11 place-items-center rounded-2xl bg-sky-300/10 text-sky-200"><Leaf size={22} /></div><div><h2 className="text-xl font-bold">Pengaturan otomatis</h2><p className="mt-1 text-sm text-slate-400">Nilai diambil dari datastream Blynk.</p></div></div>
+          <article className="rounded-2xl border border-stone-200 bg-white p-6 sm:p-8">
+            <div className="flex items-center gap-3"><div className="grid h-11 w-11 place-items-center rounded-2xl bg-sky-700/10 text-sky-800"><Leaf size={22} /></div><div><h2 className="text-xl font-bold">Pengaturan otomatis</h2><p className="mt-1 text-sm text-stone-500">Nilai diambil dari datastream Blynk.</p></div></div>
 
             <label className="mt-7 block">
-              <div className="flex justify-between gap-4 text-sm"><span className="text-slate-300">Batas kelembapan · V12</span><strong>{threshold}%</strong></div>
+              <div className="flex justify-between gap-4 text-sm"><span className="text-stone-700">Batas kelembapan · V12</span><strong>{threshold}%</strong></div>
               <input className="mt-4 w-full accent-emerald-300" type="range" min="10" max="80" value={threshold} onChange={e => setThreshold(Number(e.target.value))} />
-              <div className="mt-1 flex justify-between text-xs text-slate-500"><span>10%</span><span>80%</span></div>
+              <div className="mt-1 flex justify-between text-xs text-stone-500"><span>10%</span><span>80%</span></div>
             </label>
 
             <label className="mt-7 block">
-              <div className="flex justify-between gap-4 text-sm"><span className="text-slate-300">Durasi siram · V6</span><strong>{duration} detik</strong></div>
+              <div className="flex justify-between gap-4 text-sm"><span className="text-stone-700">Durasi siram · V6</span><strong>{duration} detik</strong></div>
               <input className="mt-4 w-full accent-emerald-300" type="range" min="1" max="120" value={duration} onChange={e => setDuration(Number(e.target.value))} />
-              <div className="mt-1 flex justify-between text-xs text-slate-500"><span>1 detik</span><span>120 detik</span></div>
+              <div className="mt-1 flex justify-between text-xs text-stone-500"><span>1 detik</span><span>120 detik</span></div>
             </label>
 
-            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-emerald-300 px-4 py-3 font-bold text-emerald-950 hover:bg-emerald-200 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
+            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-emerald-800 px-4 py-3 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
 
-            {message && <p aria-live="polite" className="mt-4 rounded-xl bg-white/5 px-3 py-2 text-sm text-slate-300">{message}</p>}
-            <p className="mt-5 text-xs text-slate-500">Kelembapan terakhir: {hasMoisture ? `${moisture}%` : "belum ada data"}.</p>
+            {message && <p aria-live="polite" className="mt-4 rounded-xl bg-stone-100 px-3 py-2 text-sm text-stone-700">{message}</p>}
+            <p className="mt-5 text-xs text-stone-500">Kelembapan terakhir: {hasMoisture ? `${moisture}%` : "belum ada data"}.</p>
           </article>
         </section>
 
-        <footer className="mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-5 text-xs text-slate-500"><span>SmartPlant · Blynk Cloud</span><span>Refresh otomatis setiap 4 detik</span></footer>
+        <footer className="mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-stone-200 pt-5 text-xs text-stone-500"><span>SmartPlant · Blynk Cloud</span><span>Refresh otomatis setiap 4 detik</span></footer>
       </div>
     </main>
   );
