@@ -2,15 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-* { box-sizing: border-box; }
-html, body { min-height: 100%; }
+:root {
+  color-scheme: light;
+  background: #f5f4ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  background: #07110e;
-  color: #ecf7f0;
+  background: #f5f4ed;
+  color: #1c2b22;
   font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "ss01" on;
 }
-button, input { font: inherit; }
-button { cursor: pointer; }
-::selection { background: #3bd18a; color: #06110b; }
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #6a9d7d;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  background: #c8e0cf;
+  color: #163321;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
