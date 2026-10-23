@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SmartPlant | Dashboard",
-  description: "Monitor and control your SmartPlant irrigation system."
+  title: "SmartPlant | Kontrol Tanaman",
+  description: "Pantau kelembapan dan atur penyiraman tanaman melalui SmartPlant."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
