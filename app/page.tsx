@@ -121,7 +121,7 @@ export default function Home() {
       <div className="mx-auto max-w-6xl">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-800 text-white"><Sprout size={27} /></div>
+            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-stone-800 text-white"><Sprout size={27} /></div>
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-800">SmartPlant IoT</p>
               <h1 className="mt-1 text-2xl font-bold sm:text-3xl">Kondisi kebun</h1>
@@ -172,17 +172,17 @@ export default function Home() {
 
             <div className="mt-7 flex items-center justify-between gap-4 rounded-2xl border border-stone-200 p-4">
               <div><p className="font-semibold">Pompa air</p><p className="mt-1 text-sm text-stone-500">{pumpOn ? "Pompa sedang menyala" : "Pompa sedang mati"}</p></div>
-              <button onClick={() => void sendChanges([{ pin: "V0", value: pumpOn ? 0 : 1 }], "Pompa")} disabled={!data?.connected || busyPin !== null} className={`rounded-xl px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-40 ${pumpOn ? "bg-rose-700 text-white" : "bg-emerald-800 text-white"}`}>{busyPin === "Pompa" ? "Menyimpan..." : pumpOn ? "Matikan" : "Nyalakan"}</button>
+              <button onClick={() => void sendChanges([{ pin: "V0", value: pumpOn ? 0 : 1 }], "Pompa")} disabled={!data?.connected || busyPin !== null} className={`rounded-xl px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-40 ${pumpOn ? "bg-rose-700 text-white" : "bg-stone-800 text-white"}`}>{busyPin === "Pompa" ? "Menyimpan..." : pumpOn ? "Matikan" : "Nyalakan"}</button>
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200 p-4">
                 <div><p className="font-semibold">Jadwal aktif</p><p className="mt-1 text-xs text-stone-500">Datastream V1</p></div>
-                <button onClick={() => void sendChanges([{ pin: "V1", value: scheduleActive ? 0 : 1 }], "Jadwal")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${scheduleActive ? "bg-emerald-800 text-white" : "bg-stone-200 text-slate-200"}`}>{scheduleActive ? "Aktif" : "Nonaktif"}</button>
+                <button onClick={() => void sendChanges([{ pin: "V1", value: scheduleActive ? 0 : 1 }], "Jadwal")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${scheduleActive ? "bg-stone-800 text-white" : "bg-stone-200 text-stone-700"}`}>{scheduleActive ? "Aktif" : "Nonaktif"}</button>
               </div>
               <div className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200 p-4">
                 <div><p className="font-semibold">Otomatis sensor</p><p className="mt-1 text-xs text-stone-500">Datastream V11</p></div>
-                <button onClick={() => void sendChanges([{ pin: "V11", value: soilAuto ? 0 : 1 }], "Mode otomatis")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${soilAuto ? "bg-emerald-800 text-white" : "bg-stone-200 text-slate-200"}`}>{soilAuto ? "Aktif" : "Nonaktif"}</button>
+                <button onClick={() => void sendChanges([{ pin: "V11", value: soilAuto ? 0 : 1 }], "Mode otomatis")} disabled={!data || busyPin !== null} className={`rounded-xl px-3 py-2 text-sm font-bold disabled:opacity-40 ${soilAuto ? "bg-stone-800 text-white" : "bg-stone-200 text-stone-700"}`}>{soilAuto ? "Aktif" : "Nonaktif"}</button>
               </div>
             </div>
 
@@ -214,7 +214,7 @@ export default function Home() {
               <div className="mt-1 flex justify-between text-xs text-stone-500"><span>1 detik</span><span>120 detik</span></div>
             </label>
 
-            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-emerald-800 px-4 py-3 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
+            <button onClick={() => void sendChanges([{ pin: "V12", value: threshold }, { pin: "V6", value: duration }], "Pengaturan otomatis")} disabled={!data || busyPin !== null} className="mt-7 w-full rounded-xl bg-emerald-800 px-4 py-3 font-bold text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40">{busyPin === "Pengaturan otomatis" ? "Menyimpan..." : "Simpan pengaturan"}</button>
 
             {message && <p aria-live="polite" className="mt-4 rounded-xl bg-stone-100 px-3 py-2 text-sm text-stone-700">{message}</p>}
             <p className="mt-5 text-xs text-stone-500">Kelembapan terakhir: {hasMoisture ? `${moisture}%` : "belum ada data"}.</p>
